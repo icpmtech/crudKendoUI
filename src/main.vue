@@ -1,6 +1,6 @@
 <template>
   <div>
-  <TreeList
+    <TreeList
       :style="{
         maxHeight: '510px',
         overflow: 'auto',
@@ -18,7 +18,7 @@
       @expandchange="onExpandChange"
       :columns="columns"
       :toolbar="'toolbar'"
-      >
+    >
       <template v-slot:toolbar>
         <div>
           <KButton
@@ -36,21 +36,37 @@
             Cancel Changes
           </KButton>
         </div>
-    </template>
-    <template v-slot:textEditor={props}>
-          <TreeListTextEditor v-bind="props" :focusInputOnMount="true" @change="props.onChange" />
-    </template>
-    <template v-slot:numericEditor={props}>
-          <TreeListNumericEditor v-bind="props" :focusInputOnMount="true" @change="props.onChange" />
-    </template>
-    <template v-slot:dateEditor={props}>
-          <TreeListDateEditor v-bind="props" :focusInputOnMount="true" @change="props.onChange" />
-    </template>
-    <template v-slot:booleanEditor={props}>
-          <TreeListBooleanEditor v-bind="props" :focusInputOnMount="true" @change="props.onChange" />
-    </template>
-  </TreeList>
-</div>
+      </template>
+      <template v-slot:textEditor="{ props }">
+        <TreeListTextEditor
+          v-bind="props"
+          :focusInputOnMount="true"
+          @change="props.onChange"
+        />
+      </template>
+      <template v-slot:numericEditor="{ props }">
+        <TreeListNumericEditor
+          v-bind="props"
+          :focusInputOnMount="true"
+          @change="props.onChange"
+        />
+      </template>
+      <template v-slot:dateEditor="{ props }">
+        <TreeListDateEditor
+          v-bind="props"
+          :focusInputOnMount="true"
+          @change="props.onChange"
+        />
+      </template>
+      <template v-slot:booleanEditor="{ props }">
+        <TreeListBooleanEditor
+          v-bind="props"
+          :focusInputOnMount="true"
+          @change="props.onChange"
+        />
+      </template>
+    </TreeList>
+  </div>
 </template>
 
 <script>
@@ -77,49 +93,32 @@ export default {
   },
   data() {
     return {
-        dataItems: employees.slice(),
-        expanded: [1, 2, 32],
-        editItem: undefined,
-        editItemField: undefined,
-        changes: false,
-        subItemsField: "employees",
-        expandField: "expanded",
-        editField: "inEdit",
-        initColumns: [
-          {
-            field: "name",
-            title: "Name",
-            width: "280px",
-            editor: 'text',
-            editCell: 'textEditor',
-            expandable: true,
-          },
-          {
-            field: "position",
-            title: "Position",
-            width: "260px",
-            editCell: 'textEditor',
-          },
-          {
-            field: "hireDate",
-            title: "Hire Date",
-            format: "{0:d}",
-            width: "170px",
-            editCell: 'dateEditor',
-          },
-          {
-            field: "timeInPosition",
-            title: "Year(s) in Position",
-            width: "170px",
-            editCell: 'numericEditor',
-          },
-          {
-            field: "fullTime",
-            title: "Full Time",
-            width: "160px",
-            editCell: 'booleanEditor',
-          },
-        ]
+      dataItems: employees.slice(),
+      expanded: [1, 2, 32],
+      editItem: undefined,
+      editItemField: undefined,
+      changes: false,
+      subItemsField: 'subcontrols',
+      expandField: 'expanded',
+      editField: 'inEdit',
+      initColumns: [
+        {
+          field: 'id',
+          title: 'ID',
+          width: '30px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+        {
+          field: 'name',
+          title: 'Title',
+          width: '280px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+      ],
     };
   },
   computed: {
@@ -129,35 +128,37 @@ export default {
     columns() {
       return this.initColumns.map((column) => ({
         ...column,
-        editCell: this.editItemField === column.field ? column.editCell : undefined,
-      }))
+        editCell:
+          this.editItemField === column.field ? column.editCell : undefined,
+      }));
     },
     processedData() {
       return mapTree(this.dataItems, this.subItemsField, (item) =>
         extendDataItem(item, this.subItemsField, {
           [this.expandField]: this.expanded.includes(item.id),
-          [this.editField]: item.id === this.editItemId ? this.editItemField : undefined,
+          [this.editField]:
+            item.id === this.editItemId ? this.editItemField : undefined,
         })
-      )
-    }
+      );
+    },
   },
   methods: {
     handleRowMousedown() {
       this.preventExit = true;
-        clearTimeout(this.preventExitTimeout);
-        this.preventExitTimeout = setTimeout(() => {
-          this.preventExit = undefined;
-        });
+      clearTimeout(this.preventExitTimeout);
+      this.preventExitTimeout = setTimeout(() => {
+        this.preventExit = undefined;
+      });
     },
     handleRowBlur() {
-        clearTimeout(this.blurTimeout);
+      clearTimeout(this.blurTimeout);
 
-        if (!this.preventExit) {
-          this.blurTimeout = setTimeout(() => {
-            this.exitEdit();
-          });
-        }
-      },
+      if (!this.preventExit) {
+        this.blurTimeout = setTimeout(() => {
+          this.exitEdit();
+        });
+      }
+    },
     handleRowFocus() {
       clearTimeout(this.blurTimeout);
     },
@@ -166,51 +167,51 @@ export default {
 
       if (
         targetClasses &&
-        (targetClasses.contains("k-i-caret-alt-right") ||
-          targetClasses.contains("k-i-caret-alt-down"))
+        (targetClasses.contains('k-i-caret-alt-right') ||
+          targetClasses.contains('k-i-caret-alt-down'))
       ) {
         return;
       }
 
       this.enterEdit(event.dataItem, event.field);
     },
-    enterEdit (dataItem, field) {
+    enterEdit(dataItem, field) {
       this.editItem = { ...dataItem };
       this.editItemField = field;
     },
-    exitEdit () {
+    exitEdit() {
       this.editItem = undefined;
       this.editItemField = undefined;
     },
-    onExpandChange (event) {
+    onExpandChange(event) {
       this.expanded = event.value
         ? this.expanded.filter((id) => id !== event.dataItem.id)
         : [...this.expanded, event.dataItem.id];
     },
-    saveChanges () {
+    saveChanges() {
       employees.splice(0, employees.length, ...this.dataItems);
       this.editItem = undefined;
       this.editItemField = undefined;
       this.changes = false;
     },
-    cancelChanges () {
+    cancelChanges() {
       this.dataItems = [...employees];
       this.editItem = undefined;
       this.editItemField = undefined;
       this.changes = false;
     },
-    itemChange (event) {
+    itemChange(event) {
       const field = event.field;
-      
+
       this.changes = true;
       this.dataItems = mapTree(this.dataItems, this.subItemsField, (item) =>
-          event.dataItem.id === item.id
-            ? extendDataItem(item, this.subItemsField, {
-                [field]: event.value,
-              })
-            : item
-        );
-    }
+        event.dataItem.id === item.id
+          ? extendDataItem(item, this.subItemsField, {
+              [field]: event.value,
+            })
+          : item
+      );
+    },
   },
 };
 </script>
