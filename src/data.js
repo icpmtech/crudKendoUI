@@ -7,10 +7,14 @@ const controls = [
       {
         id: 2,
         title: 'Utilize an Active Discovery Tool',
+        maturityAtual: 2,
+        maturityExpected: 5,
       },
       {
         id: 3,
         title: 'Utilize an Active Discovery Tool',
+        maturityAtual: 2,
+        maturityExpected: 5,
       },
       {
         id: 2,
@@ -20,10 +24,14 @@ const controls = [
           {
             id: 4,
             title: 'Maintain Inventory of Authorized Software',
+            maturityAtual: 2,
+            maturityExpected: 5,
           },
           {
             id: 5,
             title: 'Ensure Software is Supported by Vendor',
+            maturityAtual: 2,
+            maturityExpected: 5,
           },
         ],
       },

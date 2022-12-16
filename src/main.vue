@@ -1,5 +1,6 @@
 <template>
   <div>
+  <h1>Edit Maturity Matrix</h1>
     <TreeList
       :style="{
         maxHeight: '510px',
@@ -107,12 +108,26 @@ export default {
           title: 'ID',
           width: '30px',
           editor: 'text',
-          editCell: 'textEditor',
           expandable: true,
         },
         {
           field: 'title',
           title: 'Title',
+          width: '280px',
+          editor: 'text',
+          expandable: true,
+        },
+        {
+          field: 'maturityAtual',
+          title: 'Maturity Atual',
+          width: '280px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+        {
+          field: 'maturityExpected',
+          title: 'Maturity Expected',
           width: '280px',
           editor: 'text',
           editCell: 'textEditor',
