@@ -111,7 +111,7 @@ export default {
           expandable: true,
         },
         {
-          field: 'name',
+          field: 'title',
           title: 'Title',
           width: '280px',
           editor: 'text',
