@@ -138,15 +138,15 @@ export default {
         {
           field: 'recomendations',
           title: 'Recomendations',
-          width: '280px',
+          width: '180px',
           editor: 'text',
           editCell: 'textEditor',
           expandable: true,
         },
         {
-          field: '',
+          field: 'solutions',
           title: 'Solutions',
-          width: '280px',
+          width: '180px',
           editor: 'text',
           editCell: 'textEditor',
           expandable: true,
