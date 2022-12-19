@@ -150,6 +150,22 @@ export default {
           expandable: true,
         },
         {
+          field: 'maturityExpected',
+          title: 'Implemetation State',
+          width: '280px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+        {
+          field: 'maturityExpected',
+          title: 'Implemetation Group',
+          width: '280px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+        {
           field: 'recomendations',
           title: 'Recomendations',
         width: '20%',
@@ -159,6 +175,14 @@ export default {
         {
           field: 'solutions',
           title: 'Solutions',
+          width: '20%',
+          cell: 'myCellTemplate', width: '20%',
+          cell: 'myCellTemplate',
+          expandable: true,
+        },
+        {
+          field: 'solutions',
+          title: 'Evidences',
           width: '20%',
           cell: 'myCellTemplate', width: '20%',
           cell: 'myCellTemplate',
