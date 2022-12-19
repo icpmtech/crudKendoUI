@@ -22,6 +22,13 @@
       :columns="columns"
       :toolbar="'toolbar'"
     >
+      <template v-slot:myCellTemplate="{ props }">
+        <td>
+          <span>
+            {{ props.value }}
+          </span>
+        </td>
+      </template>
       <template v-slot:toolbar>
         <div>
           <KButton
@@ -40,6 +47,13 @@
           </KButton>
         </div>
       </template>
+      <template v-slot:myCellTemplate="{ props }">
+  <td>
+    <span>
+      {{ props.value }}
+    </span>
+  </td>
+</template>
       <template v-slot:textEditor="{ props }">
         <TreeListTextEditor
           v-bind="props"
@@ -138,17 +152,16 @@ export default {
         {
           field: 'recomendations',
           title: 'Recomendations',
-          width: '180px',
-          editor: 'text',
-          editCell: 'textEditor',
+        width: '20%',
+          cell: 'myCellTemplate',
           expandable: true,
         },
         {
           field: 'solutions',
           title: 'Solutions',
-          width: '180px',
-          editor: 'text',
-          editCell: 'textEditor',
+          width: '20%',
+          cell: 'myCellTemplate', width: '20%',
+          cell: 'myCellTemplate',
           expandable: true,
         },
       ],
