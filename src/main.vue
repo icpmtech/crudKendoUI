@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Edit Maturity Matrix</h1>
-    <h3>Auditoria - CLIENTNAME-0001</h3>
+    <h3>Auditoria - 0001</h3>
     </br>
     <TreeList
       :style="{
@@ -130,6 +130,22 @@ export default {
         {
           field: 'maturityExpected',
           title: 'Maturity Expected',
+          width: '280px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+        {
+          field: 'recomendations',
+          title: 'Recomendations',
+          width: '280px',
+          editor: 'text',
+          editCell: 'textEditor',
+          expandable: true,
+        },
+        {
+          field: '',
+          title: 'Solutions',
           width: '280px',
           editor: 'text',
           editCell: 'textEditor',

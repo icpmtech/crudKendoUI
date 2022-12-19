@@ -17,6 +17,7 @@ const controls = [
         title: 'Utilize an Active Discovery Tool',
         maturityAtual: 2,
         maturityExpected: 5,
+        recomendations:'Recomendations',
       },
     ],
   },
