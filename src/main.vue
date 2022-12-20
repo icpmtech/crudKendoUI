@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Edit Maturity Matrix</h1>
-    <h3>Auditoria - 0001</h3>
+    <h1>Edit Auditoria - 0001</h1>
     </br>
     <TreeList
       :style="{
